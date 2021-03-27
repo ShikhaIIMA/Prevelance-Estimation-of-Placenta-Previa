@@ -1,1 +1,2 @@
 # Prevelance-Estimation-of-Placenta-Previa
+The objective is to determine the proportion/probability of female births in women having an unusual medical condition during pregnancy called Placenta Previa. In Germany, out of total 980 placenta previa births, 437 were found to be female. The problem is to determine that how much evidence this data lends to the claim that proportion of female births in placenta previa cases is less than that in general population (0.485)
