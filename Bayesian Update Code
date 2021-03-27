@@ -1,0 +1,82 @@
+Example 1: Placenta Previa #simulating values from posterior distribution
+pos_sim<-rbeta(1000,438,544)
+#Plotting histogram
+par(mfrow=c(1,3))
+hist(pos_sim)
+#Finding 95% interval)
+quantile(pos_sim,probs = .025)
+quantile(pos_sim,probs = .975)
+median(pos_sim)
+mean_pos_sim<-mean(pos_sim)
+mean_pos_sim
+sd_pos_sim<-sqrt(var(pos_sim))
+sd_pos_sim
+#CI through normal approximation
+CI_norm_low<-mean_pos_sim-1.96*sd_pos_sim
+CI_norm_high<-mean_pos_sim+1.96*sd_pos_sim
+CI_norm_low
+CI_norm_high
+#Logit transform
+sim_logit<-log((pos_sim/(1-pos_sim)))
+#Plotting histogram
+hist(sim_logit)
+#Finding 95% interval)
+quantile(sim_logit,probs = .025)
+quantile(sim_logit,probs = .975)
+mean_simlogit<-mean(sim_logit)
+mean_simlogit
+sd_simlogit<-sqrt(var(sim_logit))
+sd_simlogit
+#CI through normal approximation
+CI_norm_low1<-mean_simlogit-1.96*sd_simlogit
+CI_norm_high1<-mean_simlogit+1.96*sd_simlogit
+CI_norm_low1
+CI_norm_high1
+#Odds ratio transformation
+sim_odds<-(pos_sim)/(1-pos_sim)
+#Plotting histogram
+hist(sim_odds)
+#Finding 95% interval)
+quantile(sim_odds,probs = .025)
+quantile(sim_odds,probs = .975)
+mean_simodds<-mean(sim_odds)
+mean_simodds
+sd_simodds<-sqrt(var(sim_odds))
+sd_simodds
+#CI through normal approximation
+CI_norm_low2<-mean_simodds-1.96*sd_simodds
+CI_norm_high2<-mean_simodds+1.96*sd_simodds
+CI_norm_low2
+CI_norm_high2
+#Sensitivity
+cons<-2
+a1<-.485*cons
+b1<-(cons-a1)
+#Data likelihood
+success<-437
+failure<-543
+a1_pos<-a1+success
+b1_pos<-b1+failure
+pos_sim<-rbeta(n = 10000,shape1 = a1_pos,shape2 = b1_pos)
+m1<-mean(pos_sim)
+sd1<-sqrt(var(pos_sim))
+c1_low<-(m1-1.96*sd1)
+c1_high<-(m1+1.96*sd1)
+c1_low
+c1_high
+#aplha+beta=200
+cons<-200
+a1<-.485*cons
+b1<-(cons-a1)
+#Data likelihood
+success<-437
+failure<-543
+a1_pos<-a1+success
+b1_pos<-b1+failure
+pos_sim<-rbeta(n = 10000,shape1 = a1_pos,shape2 = b1_pos)
+m1<-mean(pos_sim)
+sd1<-sqrt(var(pos_sim))
+c1_low<-(m1-1.96*sd1)
+c1_high<-(m1+1.96*sd1)
+c1_low
+c1_high
